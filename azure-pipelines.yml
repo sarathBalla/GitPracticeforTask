@@ -22,14 +22,14 @@ pool:
   vmImage: ubuntu-latest #windows-latest
 
 #if we want to take the runing script value from package.json as a mention from the YAML file not from variables
-parameters:
-  - name: SCRIPT_KEY_VAL2
-    displayName: 'Select Script Key'
-    type: string
-    default: 'test-demo-CI'
-    values:
-      - test-demo-CI
-      - test-demo
+#parameters:
+#  - name: SCRIPT_KEY_VAL2
+#    displayName: 'Select Script Key'
+#    type: string
+#    default: 'test-demo-CI'
+#    values:
+#      - test-demo-CI
+#      - test-demo
 # We mentioned all the steps need to run from the AZURE
 steps:
 # Node JS Installer 
