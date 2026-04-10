@@ -1,0 +1,74 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+#trigger:
+#- main
+#--------------------------------- Triggering or sceduling the Pipline Automatically --------------------------------------
+#Trigeering or sceduling using time everyday night by using YAML file this is oneway
+#Second way triggers and give time and Days and all details this is most prefer way
+schedules:
+# This is UTC time 2:40 AM
+  - cron: "10 21 * * *"
+    displayName: "Daily Automatic Pipline Run"
+    branches:
+      include:
+        - main
+    always: true
+ 
+# Here we are setuping our machine if we want windows or ubuntu or MAC OS
+pool:
+  vmImage: ubuntu-latest #windows-latest
+
+#if we want to take the runing script value from package.json as a mention from the YAML file not from variables
+parameters:
+  - name: SCRIPT_KEY_VAL2
+    displayName: 'Select Script Key'
+    type: string
+    default: 'test-demo-CI'
+    values:
+      - test-demo-CI
+      - test-demo
+# We mentioned all the steps need to run from the AZURE
+steps:
+# Node JS Installer 
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '25.x'
+#Install Playwright Dependencies
+- script: npm ci
+  displayName: 'Install Playwright Dependencies'
+
+# Installing Playwright Browsers
+- script: npx playwright install --with-deps
+  displayName: 'Install Playwright Browsers'
+
+# Adding script value(SCRIPT_KEY_VAL) in variables part accessing from there
+- script: npm run $(SCRIPT_KEY_VAL)
+  displayName: 'Run Tests'
+
+# Adding script value(SCRIPT_KEY_VAL2) in YML above we mentioned part accessing from there
+#- script: npm run ${{parameters.SCRIPT_KEY_VAL2}}
+#  displayName: 'Run Tests'
+
+#------------------------------------------ Reports Setup ----------------------------------------------------#
+
+# Setting Up HTML Report to the AZURE pipline(we need select Publish Pipeline Artifacts)
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'playwright-report'
+    artifact: 'playwright-report'
+    publishLocation: 'pipeline'
+  condition: always()
+
+# Setting Up Junit Report to the AZURE pipline(we need select Publish Test Results)
+- task: PublishTestResults@2
+  inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**test-results/junit-report.xml'
+      testRunTitle: 'Playwright Junit Report'
+  condition: always()
+
+
