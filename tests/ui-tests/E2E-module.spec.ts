@@ -62,6 +62,6 @@ test(
     });
 
     await logoutPage.logout();
-    await expect(loginPage.usernameInput).toBeChecked();
+    await expect(loginPage.usernameInput).toBeVisible();
   },
 );
