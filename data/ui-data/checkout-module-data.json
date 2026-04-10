@@ -1,0 +1,8 @@
+{
+    "positivecheckout":{
+        "firstname":"test",
+        "lastname":"new",
+        "postalcode":"533201"
+    },
+    "successmsg":"Thank you for your order!"
+}

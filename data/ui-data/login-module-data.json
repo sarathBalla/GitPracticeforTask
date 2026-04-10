@@ -1,0 +1,11 @@
+{
+    "negativeLoginData": {
+    "wrongUsername": "asmin",
+    "wrongPassword":  "asminwrongpassword",
+    "InvalidCredentials_text": "Epic sadface: Username and password do not match any user in this service"
+    },
+    "positiveLoginData": {
+        "Title_text": "Products"
+    }
+
+}
