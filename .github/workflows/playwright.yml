@@ -18,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --project=chromium
+      run: npm run test-pipeline
     - uses: actions/upload-artifact@v5
       if: always() # Upload the report even if the tests fail
       with:
