@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test-dev-chrome": "cross-env ENV_NAME=demo npx playwright test --project=chromium --headed",
-    "test-pipeline-chrome": "cross-env ENV_NAME=demo npx playwright test --project=chromium"
+    "test-pipeline-chrome": "cross-env ENV_NAME=demo npx playwright test --project=chromium",
+    "test-api":"cross-env ENV_NAME=demo npx playwright test --project=apiTest --headed --grep=@Restful-Booker"
     
   },
   "keywords": [],

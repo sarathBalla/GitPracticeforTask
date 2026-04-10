@@ -48,19 +48,33 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testIgnore: ['./tests/api-tests/**/*.spec.ts'],
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testIgnore: ['./tests/api-tests/**/*.spec.ts'],
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: ['./tests/api-tests/**/*.spec.ts'],
       use: { ...devices['Desktop Safari'] },
     },
-
+    {
+      name: 'apiTest',
+      testDir: './tests/api-tests',
+      use: {
+        baseURL: process.env.API_BASE_URL,
+        extraHTTPHeaders: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          //Authorization:"Basic YWRtaW46cGFzc3dvcmQxMjM="
+        },
+      }
+    }
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
