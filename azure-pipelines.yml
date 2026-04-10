@@ -46,7 +46,7 @@ steps:
   displayName: 'Install Playwright Browsers'
 
 # Adding script value(SCRIPT_KEY_VAL) in variables part accessing from there
-- script: npx playwright test --project=chromium
+- script: npm run $(SCRIPT_KEY_VAL)
   displayName: 'Run Tests'
 
 # Adding script value(SCRIPT_KEY_VAL2) in YML above we mentioned part accessing from there
