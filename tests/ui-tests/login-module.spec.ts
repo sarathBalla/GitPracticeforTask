@@ -36,7 +36,7 @@ test("[Login] verify that the user can successfully login to the login page",
 test.describe(
   "[Login] Negative Test Cases",
   {
-    tag: "@InvalidLogin",
+    tag: ["@InvalidLogin", "@UAT"],
     annotation: {
       type: "Story Link",
       description:

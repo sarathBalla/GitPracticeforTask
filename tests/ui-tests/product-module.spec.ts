@@ -11,7 +11,7 @@ test.use({
 test.describe(
   "[ProductItem] Verifying the sorting functionality of the products",
   {
-    tag: "@Sorting",
+    tag: ["@Sorting","@UAT"],
     annotation: {
       type: "Story Link",
       description: "This block contains all the sorting functionality",
@@ -21,7 +21,7 @@ test.describe(
     test(
       "[ProductItem] verify that the products are sorted based sorted based on Name (A to Z) option selected",
       {
-        tag: "@Sorting",
+        tag: ["@Sorting","@UAT"],
         annotation: {
           type: "Test Link",
           description:
@@ -53,7 +53,7 @@ test.describe(
      test(
       "[ProductItem] verify that the products are sorted based sorted based on Name (Z to A) option selected",
       {
-        tag: "@Sorting",
+        tag: ["@Sorting","@UAT"],
         annotation: {
           type: "Test Link",
           description:
@@ -85,7 +85,7 @@ test.describe(
      test(
       "[ProductItem] verify that the products are sorted based sorted based on Price (low to high) option selected",
       {
-        tag: "@Sorting",
+        tag: ["@Sorting","@UAT"],
         annotation: {
           type: "Test Link",
           description:
@@ -117,7 +117,7 @@ test.describe(
          test(
       "[ProductItem] verify that the products are sorted based sorted based on Price (high to low) option selected",
       {
-        tag: "@Sorting",
+        tag: ["@Sorting","@UAT"],
         annotation: {
           type: "Test Link",
           description:

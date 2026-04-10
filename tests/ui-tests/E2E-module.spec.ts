@@ -13,7 +13,7 @@ test.use({
 test(
   "[E2E] verify that the products are sorted based sorted based on Price (low to high) and checkout the details",
   {
-    tag: "@E2E",
+    tag: ["@E2E", "@UAT"],
     annotation: {
       type: "Test Link",
       description:
