@@ -18,9 +18,9 @@ dotenv.config({
 
 });
 export default defineConfig({
-    timeout: 60000, // 60 seconds per test
+  timeout: 60000, // 60 seconds per test
   expect: {
-    timeout: 900000, // 15 seconds per assertion
+    timeout: 10000, // 10 seconds per assertion
   },
   testDir: './tests/ui-tests',
   /* Run tests in files in parallel */
@@ -32,7 +32,19 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', { open: 'always' }],['junit', {outputFile: 'test-results/junit-report.xml'}]],
+  reporter: [    ['html', { open: 'on-failure' }],
+    ['junit', { outputFile: 'test-results/junit-report.xml' }],
+    ['list'],
+    ['allure-playwright', { 
+      outputFolder: 'allure-results',
+      detail: true,
+      suiteTitle: true,
+      environmentInfo: {
+        'Test Environment': process.env.ENV_NAME || 'demo',
+        'Playwright Version': require('@playwright/test/package.json').version,
+        'Node Version': process.version
+      }
+    }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */

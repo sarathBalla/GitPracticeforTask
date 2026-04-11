@@ -6,7 +6,12 @@
   "scripts": {
     "test-dev-chrome": "cross-env ENV_NAME=demo npx playwright test --project=chromium --headed",
     "test-pipeline-chrome": "cross-env ENV_NAME=demo npx playwright test --project=chromium",
-    "test-api":"cross-env ENV_NAME=demo npx playwright test --project=chromium --project=apiTest --grep \"@UAT|@API\""
+    "test-api-local": "cross-env ENV_NAME=demo npx playwright test --project=apiTest --grep \"@API\"",
+    "test-api": "cross-env ENV_NAME=demo npx playwright test --project=chromium --project=apiTest --grep \"@UAT|@API\"",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results",
+    "allure:clean": "if exist allure-results rmdir /s /q allure-results && if exist allure-report rmdir /s /q allure-report"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +20,9 @@
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^25.5.2"
+    "@types/node": "^25.5.2",
+    "allure-commandline": "^2.38.1",
+    "allure-playwright": "^3.7.1"
   },
   "dependencies": {
     "cross-env": "^10.1.0",

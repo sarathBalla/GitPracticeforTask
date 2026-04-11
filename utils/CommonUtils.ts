@@ -20,25 +20,49 @@ export default class CommonUtils {
      * Provide Encrypted Data from string
      * @param data 
      * @returns 
+     * @throws Error if encryption fails
      */
-    public encryptData(data: string) {
 
+    public encryptData(data: string): string {
+
+        try
+        {
+            if (!data) {
+                throw new Error('Data is not provided. Please provide a valid string to encrypt.');
+            }
         const encryptedData = cryptoJs.AES.encrypt(data, this.SecretKey).toString();
-        console.log('Encrypted data: ', encryptedData);
+        //console.log('Encrypted data: ', encryptedData);
         return encryptedData;
+        }
+        catch(error){
+            throw new Error(`Encryption failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        }
 
     }
 
-    /**
-     * Provide Decrypted Data from encrypted string
-     * @param encryptedData 
-     * @returns 
-     */
+        /**
+         * Provide Decrypted Data from encrypted string
+         * @param encryptedData 
+         * @returns 
+         * @throws Error if decryption fails
+         */
 
-    public decryptData(encryptedData: string) {
+    public decryptData(encryptedData: string): string {
 
+        try {
+            if (!encryptedData) {
+                throw new Error('Encrypted data is not provided. Please provide a valid encrypted string.');
+            }
+            
         const decryptedData = cryptoJs.AES.decrypt(encryptedData, this.SecretKey).toString(cryptoJs.enc.Utf8);
-        console.log('Decrypted data: ', decryptedData);
+        if (!decryptedData) {
+            throw new Error('Decryption failed. Please check the encrypted data and secret key.');
+        }
+        //console.log('Decrypted data: ', decryptedData);
         return decryptedData;
+        }
+        catch (error) {
+            throw new Error(`Decryption failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        }
     } 
 }

@@ -1,0 +1,15 @@
+{
+  "invalid_id": 999999999,
+  "invalid_token": "invalidtoken12345",
+  "invalid_booking_data": {
+    "firstname": "",
+    "lastname": "",
+    "totalprice": -100,
+    "depositpaid": "notaboolean",
+    "bookingdates": {
+      "checkin": "invalid_date",
+      "checkout": "invalid_date"
+    },
+    "additionalneeds": ""
+  }
+}
