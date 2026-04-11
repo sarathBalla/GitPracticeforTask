@@ -71,4 +71,12 @@ steps:
       testRunTitle: 'Playwright Junit Report'
   condition: always()
 
+# Setting UP Allure Report to the AZURE pipline(we need select Publish Pipeline Artifacts)
+- task: PublishPipelineArtifact@3
+  inputs:
+    targetPath: 'allure-results'
+    artifact: 'allure-results'
+    publishLocation: 'pipeline'
+  condition: always()
+
 
