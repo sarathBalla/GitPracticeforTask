@@ -72,7 +72,7 @@ steps:
     condition: always()
 
   # Setting UP Allure Report to the AZURE pipline(we need select Publish Pipeline Artifacts)
-  - task: PublishPipelineArtifact@3
+  - task: PublishPipelineArtifact@1
     inputs:
       targetPath: "allure-results"
       artifact: "allure-results"
